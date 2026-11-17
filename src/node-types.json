@@ -23,6 +23,21 @@
     }
   },
   {
+    "type": "assignment_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "laser_macro",
     "named": true,
     "fields": {},
@@ -66,7 +81,7 @@
       "required": false,
       "types": [
         {
-          "type": "assignment",
+          "type": "assignment_statement",
           "named": true
         },
         {

@@ -1,0 +1,28 @@
+==================
+Assignment Statement
+==================
+
+P1 = V.A.ACT_POS.X
+
+---
+
+(source_file
+  (assignment_statement
+    (assignment
+      (parameter)
+      (variable))))
+
+
+==================
+Variable Assignment Statement
+==================
+
+V.E.FOCUS = 0.45
+
+---
+
+(source_file
+  (assignment_statement
+    (assignment
+      (variable)
+      (number))))

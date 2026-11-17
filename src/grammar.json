@@ -29,7 +29,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "assignment"
+            "name": "assignment_statement"
           },
           {
             "type": "SYMBOL",
@@ -195,6 +195,10 @@
     "macro_statement": {
       "type": "SYMBOL",
       "name": "laser_macro"
+    },
+    "assignment_statement": {
+      "type": "SYMBOL",
+      "name": "assignment"
     },
     "laser_macro": {
       "type": "SEQ",

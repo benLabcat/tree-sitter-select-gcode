@@ -14,7 +14,7 @@ module.exports = grammar({
           $.subroutine_call,
           $.for_statement,
           $.message_directive,
-          $.assignment,
+          $.assignment_statement,
           $.gcode,
           $.mcode,
           $.coordinate,
@@ -86,6 +86,9 @@ module.exports = grammar({
 
     macro_statement: ($) =>
       $.laser_macro,
+
+    assignment_statement: ($) =>
+      $.assignment,
 
     laser_macro: ($) =>
       seq(
