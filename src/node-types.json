@@ -38,6 +38,21 @@
     }
   },
   {
+    "type": "directive_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "message_directive",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "laser_macro",
     "named": true,
     "fields": {},
@@ -104,6 +119,10 @@
           "named": true
         },
         {
+          "type": "directive_statement",
+          "named": true
+        },
+        {
           "type": "feedrate",
           "named": true
         },
@@ -129,10 +148,6 @@
         },
         {
           "type": "mcode_statement",
-          "named": true
-        },
-        {
-          "type": "message_directive",
           "named": true
         },
         {

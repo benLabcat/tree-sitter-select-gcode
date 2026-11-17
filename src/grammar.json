@@ -25,7 +25,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "message_directive"
+            "name": "directive_statement"
           },
           {
             "type": "SYMBOL",
@@ -255,6 +255,10 @@
         "type": "PATTERN",
         "value": "-?\\d+(\\.\\d+)?"
       }
+    },
+    "directive_statement": {
+      "type": "SYMBOL",
+      "name": "message_directive"
     },
     "message_directive": {
       "type": "TOKEN",

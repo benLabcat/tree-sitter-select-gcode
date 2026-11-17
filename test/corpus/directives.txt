@@ -7,4 +7,5 @@ Directives
 ---
 
 (source_file
-  (message_directive))
+  (directive_statement
+    (message_directive)))

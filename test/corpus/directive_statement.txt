@@ -1,0 +1,11 @@
+==================
+Directive Statement
+==================
+
+#MSG TEST
+
+---
+
+(source_file
+  (directive_statement
+    (message_directive)))

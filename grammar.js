@@ -13,7 +13,7 @@ module.exports = grammar({
           $.subroutine_definition,
           $.subroutine_call,
           $.for_statement,
-          $.message_directive,
+          $.directive_statement,
           $.assignment_statement,
           $.gcode,
           $.mcode_statement,
@@ -115,6 +115,9 @@ module.exports = grammar({
       token(
         /-?\d+(\.\d+)?/
       ),
+
+    directive_statement: ($) =>
+      $.message_directive,
 
     message_directive: ($) =>
       token(
