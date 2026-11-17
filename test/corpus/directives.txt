@@ -6,4 +6,5 @@ Directives
 
 ---
 
-(source_file)
+(source_file
+  (message_directive))

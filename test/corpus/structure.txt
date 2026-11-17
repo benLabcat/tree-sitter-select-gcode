@@ -1,9 +1,10 @@
 ==================
-Structure
+Main Program
 ==================
 
 %MAIN
 
 ---
 
-(source_file)
+(source_file
+  (main_program))

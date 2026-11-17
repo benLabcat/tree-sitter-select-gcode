@@ -6,4 +6,7 @@ P1 = V.A.ACT_POS.X
 
 ---
 
-(source_file)
+(source_file
+  (assignment
+    (parameter)
+    (variable)))

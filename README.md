@@ -1,15 +1,29 @@
 # Tree-Sitter Select GCode
 
-Parser and syntax highlighting for Bystronic / Coherent Select GCode.
-
-## Status
-
-Development started.
+Tree-Sitter parser and Zed extension for Bystronic / Coherent Select GCode programs.
 
 ## Goals
 
-- Tree-Sitter parser
-- Zed support
+- Accurate parsing of Select GCode
 - Syntax highlighting
-- Outline support
-- Large real-world Select program test corpus
+- Symbol outline
+- Future LSP support
+- Zed integration
+
+## Project Status
+
+Early development.
+
+## Repository Layout
+
+```text
+docs/
+examples/
+queries/
+src/
+test/
+```
+
+## References
+
+Real-world Select production programs are used as the reference corpus.

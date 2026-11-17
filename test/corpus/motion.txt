@@ -6,4 +6,8 @@ G01 X10 Y20 F4200
 
 ---
 
-(source_file)
+(source_file
+  (gcode)
+  (coordinate)
+  (coordinate)
+  (feedrate))

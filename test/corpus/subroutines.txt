@@ -1,0 +1,24 @@
+==================
+Subroutine
+==================
+
+%L KREISE
+
+---
+
+(source_file
+  (subroutine_definition
+    name: (identifier)))
+
+
+==================
+Subroutine Call
+==================
+
+LL KREISE
+
+---
+
+(source_file
+  (subroutine_call
+    name: (identifier)))

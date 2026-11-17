@@ -7,4 +7,6 @@ $ENDFOR
 
 ---
 
-(source_file)
+(source_file
+  (for_statement)
+  (for_statement))

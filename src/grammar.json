@@ -1,0 +1,283 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
+  "name": "select_gcode",
+  "rules": {
+    "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "main_program"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "subroutine_definition"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "subroutine_call"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "for_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "message_directive"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "assignment"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "gcode"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "mcode"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "coordinate"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "feedrate"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "parameter"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "variable"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "laser_macro"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "line_comment"
+          }
+        ]
+      }
+    },
+    "main_program": {
+      "type": "STRING",
+      "value": "%MAIN"
+    },
+    "subroutine_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "%L"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
+    },
+    "subroutine_call": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "LL"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
+    },
+    "for_statement": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\$(FOR|ENDFOR).*"
+      }
+    },
+    "gcode": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "G\\d+"
+      }
+    },
+    "mcode": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "M\\d+"
+      }
+    },
+    "assignment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "parameter"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "variable"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "parameter"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "variable"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "number"
+            }
+          ]
+        }
+      ]
+    },
+    "parameter": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "P\\d+"
+      }
+    },
+    "variable": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "V(\\.[A-Z0-9_]+)+(\\[\\d+\\])?"
+      }
+    },
+    "coordinate": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[XYZIJKABC][-+]?\\d*\\.?\\d+"
+      }
+    },
+    "feedrate": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "F\\d+(\\.\\d+)?"
+      }
+    },
+    "laser_macro": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "string_literal"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "number"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "string_literal": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\""
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^\"]+"
+          },
+          {
+            "type": "STRING",
+            "value": "\""
+          }
+        ]
+      }
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[A-Za-z_][A-Za-z0-9_]*"
+    },
+    "number": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "-?\\d+(\\.\\d+)?"
+      }
+    },
+    "message_directive": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#MSG.*"
+      }
+    },
+    "line_comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": ";"
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          }
+        ]
+      }
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "[ \\t\\r\\n]+"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": [],
+  "reserved": {}
+}

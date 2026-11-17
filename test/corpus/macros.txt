@@ -6,4 +6,6 @@ Macros
 
 ---
 
-(source_file)
+(source_file
+  (laser_macro
+    (string_literal)))
