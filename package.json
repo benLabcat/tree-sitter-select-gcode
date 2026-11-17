@@ -1,0 +1,6 @@
+{
+  "name": "tree-sitter-select-gcode",
+  "version": "0.1.0",
+  "description": "Tree-Sitter grammar for Bystronic / Coherent Select GCode",
+  "license": "MIT"
+}

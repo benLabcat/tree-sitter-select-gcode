@@ -1,0 +1,11 @@
+node_modules/
+build/
+dist/
+.cache/
+target/
+
+*.log
+*.tmp
+*.bak
+
+tree-sitter-select-gcode.wasm
