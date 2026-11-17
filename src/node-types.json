@@ -42,6 +42,21 @@
     }
   },
   {
+    "type": "macro_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "laser_macro",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -71,11 +86,11 @@
           "named": true
         },
         {
-          "type": "laser_macro",
+          "type": "line_comment",
           "named": true
         },
         {
-          "type": "line_comment",
+          "type": "macro_statement",
           "named": true
         },
         {

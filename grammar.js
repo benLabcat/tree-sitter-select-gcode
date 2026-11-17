@@ -21,7 +21,7 @@ module.exports = grammar({
           $.feedrate,
           $.parameter,
           $.variable,
-          $.laser_macro,
+          $.macro_statement,
           $.line_comment
         )
       ),
@@ -83,6 +83,9 @@ module.exports = grammar({
       token(
         /F\d+(\.\d+)?/
       ),
+
+    macro_statement: ($) =>
+      $.laser_macro,
 
     laser_macro: ($) =>
       seq(

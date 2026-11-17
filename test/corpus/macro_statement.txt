@@ -1,0 +1,27 @@
+==================
+Macro Statement
+==================
+
+"LASERON"
+
+---
+
+(source_file
+  (macro_statement
+    (laser_macro
+      (string_literal))))
+
+
+==================
+Parameterized Macro Statement
+==================
+
+"GASON"500
+
+---
+
+(source_file
+  (macro_statement
+    (laser_macro
+      (string_literal)
+      (number))))

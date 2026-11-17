@@ -7,9 +7,9 @@
 #endif
 
 #define LANGUAGE_VERSION 15
-#define STATE_COUNT 14
-#define LARGE_STATE_COUNT 10
-#define SYMBOL_COUNT 23
+#define STATE_COUNT 15
+#define LARGE_STATE_COUNT 11
+#define SYMBOL_COUNT 24
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 17
 #define EXTERNAL_TOKEN_COUNT 0
@@ -40,8 +40,9 @@ enum ts_symbol_identifiers {
   sym_subroutine_definition = 18,
   sym_subroutine_call = 19,
   sym_assignment = 20,
-  sym_laser_macro = 21,
-  aux_sym_source_file_repeat1 = 22,
+  sym_macro_statement = 21,
+  sym_laser_macro = 22,
+  aux_sym_source_file_repeat1 = 23,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -66,6 +67,7 @@ static const char * const ts_symbol_names[] = {
   [sym_subroutine_definition] = "subroutine_definition",
   [sym_subroutine_call] = "subroutine_call",
   [sym_assignment] = "assignment",
+  [sym_macro_statement] = "macro_statement",
   [sym_laser_macro] = "laser_macro",
   [aux_sym_source_file_repeat1] = "source_file_repeat1",
 };
@@ -92,6 +94,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_subroutine_definition] = sym_subroutine_definition,
   [sym_subroutine_call] = sym_subroutine_call,
   [sym_assignment] = sym_assignment,
+  [sym_macro_statement] = sym_macro_statement,
   [sym_laser_macro] = sym_laser_macro,
   [aux_sym_source_file_repeat1] = aux_sym_source_file_repeat1,
 };
@@ -181,6 +184,10 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
+  [sym_macro_statement] = {
+    .visible = true,
+    .named = true,
+  },
   [sym_laser_macro] = {
     .visible = true,
     .named = true,
@@ -232,6 +239,7 @@ static const TSStateId ts_primary_state_ids[STATE_COUNT] = {
   [11] = 11,
   [12] = 12,
   [13] = 13,
+  [14] = 14,
 };
 
 static bool ts_lex(TSLexer *lexer, TSStateId state) {
@@ -481,9 +489,10 @@ static const TSLexerMode ts_lex_modes[STATE_COUNT] = {
   [8] = {.lex_state = 0},
   [9] = {.lex_state = 0},
   [10] = {.lex_state = 0},
-  [11] = {.lex_state = 20},
+  [11] = {.lex_state = 0},
   [12] = {.lex_state = 20},
-  [13] = {.lex_state = 0},
+  [13] = {.lex_state = 20},
+  [14] = {.lex_state = 0},
 };
 
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
@@ -506,11 +515,12 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_line_comment] = ACTIONS(1),
   },
   [STATE(1)] = {
-    [sym_source_file] = STATE(13),
+    [sym_source_file] = STATE(14),
     [sym_subroutine_definition] = STATE(2),
     [sym_subroutine_call] = STATE(2),
     [sym_assignment] = STATE(2),
-    [sym_laser_macro] = STATE(2),
+    [sym_macro_statement] = STATE(2),
+    [sym_laser_macro] = STATE(6),
     [aux_sym_source_file_repeat1] = STATE(2),
     [ts_builtin_sym_end] = ACTIONS(3),
     [sym_main_program] = ACTIONS(5),
@@ -531,7 +541,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_subroutine_definition] = STATE(3),
     [sym_subroutine_call] = STATE(3),
     [sym_assignment] = STATE(3),
-    [sym_laser_macro] = STATE(3),
+    [sym_macro_statement] = STATE(3),
+    [sym_laser_macro] = STATE(6),
     [aux_sym_source_file_repeat1] = STATE(3),
     [ts_builtin_sym_end] = ACTIONS(15),
     [sym_main_program] = ACTIONS(17),
@@ -552,7 +563,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_subroutine_definition] = STATE(3),
     [sym_subroutine_call] = STATE(3),
     [sym_assignment] = STATE(3),
-    [sym_laser_macro] = STATE(3),
+    [sym_macro_statement] = STATE(3),
+    [sym_laser_macro] = STATE(6),
     [aux_sym_source_file_repeat1] = STATE(3),
     [ts_builtin_sym_end] = ACTIONS(19),
     [sym_main_program] = ACTIONS(21),
@@ -667,30 +679,46 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_message_directive] = ACTIONS(50),
     [sym_line_comment] = ACTIONS(50),
   },
+  [STATE(10)] = {
+    [ts_builtin_sym_end] = ACTIONS(52),
+    [sym_main_program] = ACTIONS(52),
+    [anon_sym_PERCENTL] = ACTIONS(52),
+    [anon_sym_LL] = ACTIONS(52),
+    [sym_for_statement] = ACTIONS(52),
+    [sym_gcode] = ACTIONS(52),
+    [sym_mcode] = ACTIONS(52),
+    [sym_parameter] = ACTIONS(52),
+    [sym_variable] = ACTIONS(52),
+    [sym_coordinate] = ACTIONS(52),
+    [sym_feedrate] = ACTIONS(52),
+    [sym_string_literal] = ACTIONS(52),
+    [sym_message_directive] = ACTIONS(52),
+    [sym_line_comment] = ACTIONS(52),
+  },
 };
 
 static const uint16_t ts_small_parse_table[] = {
   [0] = 1,
-    ACTIONS(52), 3,
+    ACTIONS(54), 3,
       sym_parameter,
       sym_variable,
       sym_number,
   [6] = 1,
-    ACTIONS(54), 1,
-      sym_identifier,
-  [10] = 1,
     ACTIONS(56), 1,
       sym_identifier,
-  [14] = 1,
+  [10] = 1,
     ACTIONS(58), 1,
+      sym_identifier,
+  [14] = 1,
+    ACTIONS(60), 1,
       ts_builtin_sym_end,
 };
 
 static const uint32_t ts_small_parse_table_map[] = {
-  [SMALL_STATE(10)] = 0,
-  [SMALL_STATE(11)] = 6,
-  [SMALL_STATE(12)] = 10,
-  [SMALL_STATE(13)] = 14,
+  [SMALL_STATE(11)] = 0,
+  [SMALL_STATE(12)] = 6,
+  [SMALL_STATE(13)] = 10,
+  [SMALL_STATE(14)] = 14,
 };
 
 static const TSParseActionEntry ts_parse_actions[] = {
@@ -698,30 +726,31 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
   [3] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 0, 0, 0),
   [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
-  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(11),
-  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(12),
+  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(12),
+  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(13),
   [11] = {.entry = {.count = 1, .reusable = true}}, SHIFT(4),
   [13] = {.entry = {.count = 1, .reusable = true}}, SHIFT(5),
   [15] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 1, 0, 0),
   [17] = {.entry = {.count = 1, .reusable = true}}, SHIFT(3),
   [19] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0),
   [21] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(3),
-  [24] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(11),
-  [27] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(12),
+  [24] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(12),
+  [27] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(13),
   [30] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(4),
   [33] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(5),
   [36] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 1, 0, 0),
-  [38] = {.entry = {.count = 1, .reusable = true}}, SHIFT(10),
+  [38] = {.entry = {.count = 1, .reusable = true}}, SHIFT(11),
   [40] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_laser_macro, 1, 0, 0),
-  [42] = {.entry = {.count = 1, .reusable = true}}, SHIFT(8),
-  [44] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_subroutine_definition, 2, 0, 1),
-  [46] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_subroutine_call, 2, 0, 1),
-  [48] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_laser_macro, 2, 0, 0),
-  [50] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_assignment, 3, 0, 0),
-  [52] = {.entry = {.count = 1, .reusable = true}}, SHIFT(9),
-  [54] = {.entry = {.count = 1, .reusable = true}}, SHIFT(6),
+  [42] = {.entry = {.count = 1, .reusable = true}}, SHIFT(9),
+  [44] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_macro_statement, 1, 0, 0),
+  [46] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_subroutine_definition, 2, 0, 1),
+  [48] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_subroutine_call, 2, 0, 1),
+  [50] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_laser_macro, 2, 0, 0),
+  [52] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_assignment, 3, 0, 0),
+  [54] = {.entry = {.count = 1, .reusable = true}}, SHIFT(10),
   [56] = {.entry = {.count = 1, .reusable = true}}, SHIFT(7),
-  [58] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
+  [58] = {.entry = {.count = 1, .reusable = true}}, SHIFT(8),
+  [60] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
 };
 
 #ifdef __cplusplus

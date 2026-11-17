@@ -7,5 +7,6 @@ Macros
 ---
 
 (source_file
-  (laser_macro
-    (string_literal)))
+  (macro_statement
+    (laser_macro
+      (string_literal))))
