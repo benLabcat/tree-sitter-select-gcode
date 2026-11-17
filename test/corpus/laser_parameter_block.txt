@@ -1,0 +1,25 @@
+==================
+Laser Parameter Block
+==================
+
+"LASERPARA_BEGIN"
+V.E.PWR_VOLTAGE = 0.2
+V.E.FOCUS = 0.45
+"LASERPARA_END"
+
+---
+
+(source_file
+  (laser_parameter_block
+    (laserpara_begin)
+    (assignment_statement
+      (assignment
+        (variable)
+        (number)))
+    (assignment_statement
+      (assignment
+        (variable)
+        (number)))
+    (laserpara_end)
+  )
+)

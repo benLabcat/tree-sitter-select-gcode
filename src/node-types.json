@@ -72,6 +72,29 @@
     }
   },
   {
+    "type": "laser_parameter_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment_statement",
+          "named": true
+        },
+        {
+          "type": "laserpara_begin",
+          "named": true
+        },
+        {
+          "type": "laserpara_end",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "macro_statement",
     "named": true,
     "fields": {},
@@ -132,6 +155,10 @@
         },
         {
           "type": "gcode",
+          "named": true
+        },
+        {
+          "type": "laser_parameter_block",
           "named": true
         },
         {
@@ -231,6 +258,14 @@
   },
   {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "laserpara_begin",
+    "named": true
+  },
+  {
+    "type": "laserpara_end",
     "named": true
   },
   {

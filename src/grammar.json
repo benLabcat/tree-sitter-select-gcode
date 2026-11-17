@@ -33,6 +33,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "laser_parameter_block"
+          },
+          {
+            "type": "SYMBOL",
             "name": "gcode"
           },
           {
@@ -266,6 +270,34 @@
         "type": "PATTERN",
         "value": "#MSG.*"
       }
+    },
+    "laser_parameter_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "laserpara_begin"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "assignment_statement"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "laserpara_end"
+        }
+      ]
+    },
+    "laserpara_begin": {
+      "type": "STRING",
+      "value": "\"LASERPARA_BEGIN\""
+    },
+    "laserpara_end": {
+      "type": "STRING",
+      "value": "\"LASERPARA_END\""
     },
     "line_comment": {
       "type": "TOKEN",

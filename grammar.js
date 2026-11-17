@@ -15,6 +15,7 @@ module.exports = grammar({
           $.for_statement,
           $.directive_statement,
           $.assignment_statement,
+          $.laser_parameter_block,
           $.gcode,
           $.mcode_statement,
           $.coordinate,
@@ -124,7 +125,18 @@ module.exports = grammar({
         /#MSG.*/
       ),
 
+    laser_parameter_block: ($) =>
+      seq(
+        $.laserpara_begin,
+        repeat1($.assignment_statement),
+        $.laserpara_end
+      ),
 
+    laserpara_begin: ($) =>
+      '"LASERPARA_BEGIN"',
+
+    laserpara_end: ($) =>
+      '"LASERPARA_END"',
 
     line_comment: ($) =>
       token(
