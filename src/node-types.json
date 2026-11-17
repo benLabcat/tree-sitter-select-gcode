@@ -72,6 +72,21 @@
     }
   },
   {
+    "type": "mcode_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "mcode",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -113,7 +128,7 @@
           "named": true
         },
         {
-          "type": "mcode",
+          "type": "mcode_statement",
           "named": true
         },
         {

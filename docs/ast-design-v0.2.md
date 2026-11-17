@@ -483,3 +483,23 @@ examples/reference_program.select
 ```
 
 before being accepted.
+
+
+Implemented Statement Types
+
+✅ macro_statement
+
+✅ assignment_statement
+
+✅ mcode_statement
+
+
+Next Candidates
+
+motion_statement
+
+directive_statement
+
+subroutine_call_statement
+
+subroutine_definition_statement

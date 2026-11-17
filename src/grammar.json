@@ -37,7 +37,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "mcode"
+            "name": "mcode_statement"
           },
           {
             "type": "SYMBOL",
@@ -199,6 +199,10 @@
     "assignment_statement": {
       "type": "SYMBOL",
       "name": "assignment"
+    },
+    "mcode_statement": {
+      "type": "SYMBOL",
+      "name": "mcode"
     },
     "laser_macro": {
       "type": "SEQ",

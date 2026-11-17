@@ -1,0 +1,24 @@
+==================
+Program End
+==================
+
+M30
+
+---
+
+(source_file
+  (mcode_statement
+    (mcode)))
+
+
+==================
+Subroutine End
+==================
+
+M29
+
+---
+
+(source_file
+  (mcode_statement
+    (mcode)))
