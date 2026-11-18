@@ -112,6 +112,21 @@
     }
   },
   {
+    "type": "goto_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "label_reference",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "if_statement",
     "named": true,
     "fields": {},
@@ -121,6 +136,36 @@
       "types": [
         {
           "type": "comparison_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "label_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "label_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "label_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "label_name",
           "named": true
         }
       ]
@@ -298,7 +343,15 @@
           "named": true
         },
         {
+          "type": "goto_statement",
+          "named": true
+        },
+        {
           "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "label_definition",
           "named": true
         },
         {
@@ -389,6 +442,10 @@
     "named": false
   },
   {
+    "type": "$GOTO",
+    "named": false
+  },
+  {
     "type": "$IF",
     "named": false
   },
@@ -422,6 +479,14 @@
   },
   {
     "type": "LL",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {
@@ -474,6 +539,10 @@
   },
   {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "label_name",
     "named": true
   },
   {

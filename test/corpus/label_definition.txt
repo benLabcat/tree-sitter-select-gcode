@@ -1,0 +1,11 @@
+==================
+Label Definition
+==================
+
+[END]
+
+---
+
+(source_file
+  (label_definition
+    (label_name)))

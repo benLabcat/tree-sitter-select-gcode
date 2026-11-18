@@ -27,11 +27,14 @@ module.exports = grammar({
           $.endif_statement,
           $.while_statement,
           $.endwhile_statement,
+          $.goto_statement,
+
 
           // Program structure
           $.main_program,
           $.subroutine_definition,
           $.subroutine_call,
+          $.label_definition,
 
           // Generic macros
           $.macro_statement,
@@ -249,6 +252,31 @@ module.exports = grammar({
         "<",
         ">=",
         "<="
+      ),
+
+    label_definition: ($) =>
+      seq(
+        "[",
+        $.label_name,
+        "]"
+      ),
+
+    label_name: ($) =>
+      token(
+        /[^\]\r\n]+/
+      ),
+
+    label_reference: ($) =>
+      seq(
+        "[",
+        $.label_name,
+        "]"
+      ),
+
+    goto_statement: ($) =>
+      seq(
+        "$GOTO",
+        $.label_reference
       ),
 
     comment_block: ($) =>
