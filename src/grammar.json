@@ -45,6 +45,26 @@
           },
           {
             "type": "SYMBOL",
+            "name": "if_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "else_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "endif_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "while_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "endwhile_statement"
+          },
+          {
+            "type": "SYMBOL",
             "name": "main_program"
           },
           {
@@ -130,6 +150,32 @@
         "type": "PATTERN",
         "value": "\\$(FOR|ENDFOR).*"
       }
+    },
+    "if_statement": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\$IF.*"
+      }
+    },
+    "endif_statement": {
+      "type": "STRING",
+      "value": "$ENDIF"
+    },
+    "else_statement": {
+      "type": "STRING",
+      "value": "$ELSE"
+    },
+    "while_statement": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\$WHILE.*"
+      }
+    },
+    "endwhile_statement": {
+      "type": "STRING",
+      "value": "$ENDWHILE"
     },
     "gcode": {
       "type": "TOKEN",

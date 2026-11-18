@@ -1,0 +1,10 @@
+==================
+ENDWHILE
+==================
+
+$ENDWHILE
+
+---
+
+(source_file
+  (endwhile_statement))

@@ -22,6 +22,11 @@ module.exports = grammar({
           $.assignment_statement,
           $.mcode_statement,
           $.for_statement,
+          $.if_statement,
+          $.else_statement,
+          $.endif_statement,
+          $.while_statement,
+          $.endwhile_statement,
 
           // Program structure
           $.main_program,
@@ -61,6 +66,27 @@ module.exports = grammar({
       token(
         /\$(FOR|ENDFOR).*/
       ),
+
+    if_statement: ($) =>
+      token(
+        /\$IF.*/
+      ),
+
+    endif_statement: ($) =>
+      "$ENDIF",
+
+
+    else_statement: ($) =>
+      "$ELSE",
+
+    while_statement: ($) =>
+      token(
+        /\$WHILE.*/
+      ),
+
+    endwhile_statement: ($) =>
+      "$ENDWHILE",
+
 
     gcode: ($) =>
       token(/G\d+/),

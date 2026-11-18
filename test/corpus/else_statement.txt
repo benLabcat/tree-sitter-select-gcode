@@ -1,0 +1,10 @@
+==================
+ELSE
+==================
+
+$ELSE
+
+---
+
+(source_file
+  (else_statement))

@@ -1,0 +1,22 @@
+==================
+Simple IF
+==================
+
+$IF V.E.CHANINDEX_AAXIS == 0
+
+---
+
+(source_file
+  (if_statement))
+
+
+==================
+ENDIF
+==================
+
+$ENDIF
+
+---
+
+(source_file
+  (endif_statement))

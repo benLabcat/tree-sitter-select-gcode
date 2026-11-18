@@ -223,6 +223,18 @@
           "named": true
         },
         {
+          "type": "else_statement",
+          "named": true
+        },
+        {
+          "type": "endif_statement",
+          "named": true
+        },
+        {
+          "type": "endwhile_statement",
+          "named": true
+        },
+        {
           "type": "feedrate",
           "named": true
         },
@@ -232,6 +244,10 @@
         },
         {
           "type": "gcode",
+          "named": true
+        },
+        {
+          "type": "if_statement",
           "named": true
         },
         {
@@ -276,6 +292,10 @@
         },
         {
           "type": "variable",
+          "named": true
+        },
+        {
+          "type": "while_statement",
           "named": true
         }
       ]
@@ -342,6 +362,18 @@
     "named": true
   },
   {
+    "type": "else_statement",
+    "named": true
+  },
+  {
+    "type": "endif_statement",
+    "named": true
+  },
+  {
+    "type": "endwhile_statement",
+    "named": true
+  },
+  {
     "type": "feedrate",
     "named": true
   },
@@ -355,6 +387,10 @@
   },
   {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "if_statement",
     "named": true
   },
   {
@@ -411,6 +447,10 @@
   },
   {
     "type": "variable",
+    "named": true
+  },
+  {
+    "type": "while_statement",
     "named": true
   }
 ]

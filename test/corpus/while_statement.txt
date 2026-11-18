@@ -1,0 +1,10 @@
+==================
+WHILE
+==================
+
+$WHILE P1 == 0
+
+---
+
+(source_file
+  (while_statement))
