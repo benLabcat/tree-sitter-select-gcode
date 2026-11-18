@@ -14,3 +14,8 @@ The grammar follows two complementary references:
 
 The project prioritises syntax highlighting and robust parsing of real Select
 programs. Broader ISG compatibility will be added incrementally.
+
+
+Related project:
+
+zed-select-gcode
