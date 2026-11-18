@@ -160,11 +160,25 @@ module.exports = grammar({
       ),
 
     directive_statement: ($) =>
-      $.message_directive,
+      choice(
+        $.message_directive,
+        $.call_directive,
+        $.flush_directive
+      ),
 
     message_directive: ($) =>
       token(
         /#MSG.*/
+      ),
+
+    call_directive: ($) =>
+      token(
+        /#CALL.*/
+      ),
+
+    flush_directive: ($) =>
+      token(
+        /#FLUSH.*/
       ),
 
     laser_parameter_block: ($) =>

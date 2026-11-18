@@ -329,14 +329,41 @@
       }
     },
     "directive_statement": {
-      "type": "SYMBOL",
-      "name": "message_directive"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "message_directive"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "call_directive"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "flush_directive"
+        }
+      ]
     },
     "message_directive": {
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
         "value": "#MSG.*"
+      }
+    },
+    "call_directive": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#CALL.*"
+      }
+    },
+    "flush_directive": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#FLUSH.*"
       }
     },
     "laser_parameter_block": {

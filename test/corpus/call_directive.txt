@@ -1,0 +1,11 @@
+==================
+CALL Directive
+==================
+
+#CALL AX[A, 5, 0]
+
+---
+
+(source_file
+  (directive_statement
+    (call_directive)))

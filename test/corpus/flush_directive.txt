@@ -1,0 +1,11 @@
+==================
+FLUSH Directive
+==================
+
+#FLUSH WAIT
+
+---
+
+(source_file
+  (directive_statement
+    (flush_directive)))

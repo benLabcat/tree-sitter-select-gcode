@@ -97,6 +97,14 @@
       "required": true,
       "types": [
         {
+          "type": "call_directive",
+          "named": true
+        },
+        {
+          "type": "flush_directive",
+          "named": true
+        },
+        {
           "type": "message_directive",
           "named": true
         }
@@ -425,6 +433,10 @@
     "named": true
   },
   {
+    "type": "call_directive",
+    "named": true
+  },
+  {
     "type": "comment_block",
     "named": true
   },
@@ -446,6 +458,10 @@
   },
   {
     "type": "feedrate",
+    "named": true
+  },
+  {
+    "type": "flush_directive",
     "named": true
   },
   {
