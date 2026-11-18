@@ -228,7 +228,14 @@ module.exports = grammar({
       ),
 
     comparison_operator: ($) =>
-      "==",
+      choice(
+        "==",
+        "!=",
+        ">",
+        "<",
+        ">=",
+        "<="
+      ),
 
     comment_block: ($) =>
       token(

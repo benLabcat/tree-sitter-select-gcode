@@ -1,0 +1,89 @@
+==================
+Equal
+==================
+
+$IF V.E.VALUE == 0
+
+---
+
+(source_file
+  (if_statement
+    (comparison_expression
+      (variable)
+      (comparison_operator)
+      (number))))
+
+==================
+Not Equal
+==================
+
+$IF V.E.VALUE != 0
+
+---
+
+(source_file
+  (if_statement
+    (comparison_expression
+      (variable)
+      (comparison_operator)
+      (number))))
+
+==================
+Greater Than
+==================
+
+$IF V.E.VALUE > 0
+
+---
+
+(source_file
+  (if_statement
+    (comparison_expression
+      (variable)
+      (comparison_operator)
+      (number))))
+
+==================
+Less Than
+==================
+
+$IF V.E.VALUE < 0
+
+---
+
+(source_file
+  (if_statement
+    (comparison_expression
+      (variable)
+      (comparison_operator)
+      (number))))
+
+==================
+Greater Or Equal
+==================
+
+$IF V.E.VALUE >= 0
+
+---
+
+(source_file
+  (if_statement
+    (comparison_expression
+      (variable)
+      (comparison_operator)
+      (number))))
+
+==================
+Less Or Equal
+==================
+
+$IF V.E.VALUE <= 0
+
+---
+
+(source_file
+  (if_statement
+    (comparison_expression
+      (variable)
+      (comparison_operator)
+      (number))))
