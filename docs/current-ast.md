@@ -80,3 +80,9 @@ Current grammar status:
 - No unresolved conflicts
 - Statement-oriented AST
 - Process block support implemented
+
+Directives
+
+- message_directive
+- call_directive
+- flush_directive
