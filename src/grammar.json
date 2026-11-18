@@ -9,6 +9,42 @@
         "members": [
           {
             "type": "SYMBOL",
+            "name": "comment_block"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "laser_parameter_block"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "shape_block"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "ramp_block"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "burst_block"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "directive_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "assignment_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "mcode_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "for_statement"
+          },
+          {
+            "type": "SYMBOL",
             "name": "main_program"
           },
           {
@@ -21,27 +57,11 @@
           },
           {
             "type": "SYMBOL",
-            "name": "for_statement"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "directive_statement"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "assignment_statement"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "laser_parameter_block"
+            "name": "macro_statement"
           },
           {
             "type": "SYMBOL",
             "name": "gcode"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "mcode_statement"
           },
           {
             "type": "SYMBOL",
@@ -58,22 +78,6 @@
           {
             "type": "SYMBOL",
             "name": "variable"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "shape_block"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "ramp_block"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "burst_block"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "macro_statement"
           },
           {
             "type": "SYMBOL",
@@ -394,6 +398,13 @@
     "burst_end": {
       "type": "STRING",
       "value": "\"BURST_END\""
+    },
+    "comment_block": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#COMMENT BEGIN[\\s\\S]*?#COMMENT END"
+      }
     },
     "line_comment": {
       "type": "TOKEN",

@@ -211,6 +211,10 @@
           "named": true
         },
         {
+          "type": "comment_block",
+          "named": true
+        },
+        {
           "type": "coordinate",
           "named": true
         },
@@ -327,6 +331,10 @@
   },
   {
     "type": "burst_end",
+    "named": true
+  },
+  {
+    "type": "comment_block",
     "named": true
   },
   {

@@ -9,25 +9,37 @@ module.exports = grammar({
     source_file: ($) =>
       repeat(
         choice(
+          // Large Select-specific structures
+          $.comment_block,
+
+          $.laser_parameter_block,
+          $.shape_block,
+          $.ramp_block,
+          $.burst_block,
+
+          // Statements
+          $.directive_statement,
+          $.assignment_statement,
+          $.mcode_statement,
+          $.for_statement,
+
+          // Program structure
           $.main_program,
           $.subroutine_definition,
           $.subroutine_call,
-          $.for_statement,
-          $.directive_statement,
-          $.assignment_statement,
-          $.laser_parameter_block,
+
+          // Generic macros
+          $.macro_statement,
+
+          // Atomic constructs
           $.gcode,
-          $.mcode_statement,
           $.coordinate,
           $.feedrate,
           $.parameter,
           $.variable,
-          $.shape_block,
-          $.ramp_block,
-          $.burst_block,
-          $.macro_statement,
-          $.line_comment
-        )
+
+          // Comments
+          $.line_comment        )
       ),
 
     main_program: ($) =>
@@ -179,6 +191,11 @@ module.exports = grammar({
 
     burst_end: ($) =>
       '"BURST_END"',
+
+    comment_block: ($) =>
+      token(
+        /#COMMENT BEGIN[\s\S]*?#COMMENT END/
+      ),
 
 
     line_comment: ($) =>

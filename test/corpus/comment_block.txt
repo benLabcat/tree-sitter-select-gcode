@@ -1,0 +1,12 @@
+==================
+Comment Block
+==================
+
+#COMMENT BEGIN
+Example
+#COMMENT END
+
+---
+
+(source_file
+  (comment_block))
