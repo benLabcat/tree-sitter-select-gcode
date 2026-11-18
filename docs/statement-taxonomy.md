@@ -1,62 +1,93 @@
 # Statement Taxonomy
 
-Currently Implemented
+## ISG Base Language
 
-- directive_statement
-- assignment_statement
-- macro_statement
-- mcode_statement
-- for_statement
+### Program Structure
+
+- main_program
 - subroutine_definition
 - subroutine_call
 
-Candidate Future Statements
+### Assignments
 
-- motion_statement
-- process_block_statement
-- comment_statement
+- assignment_statement
 
-Implemented Process Blocks
+### Directives
+
+- directive_statement
+
+### Machine Functions
+
+- mcode_statement
+
+### Flow Control
+
+Implemented:
+
+- for_statement
+
+- if_statement
+- else_statement
+- endif_statement
+
+- while_statement
+- endwhile_statement
+
+Planned:
+
+- do_statement
+- enddo_statement
+
+- goto_statement
+
+### Future Expression System
+
+Planned:
+
+- comparison_expression
+- arithmetic_expression
+- boolean_expression
+
+## Select Extensions
+
+### Macros
+
+- macro_statement
+
+### Process Blocks
 
 - laser_parameter_block
 - shape_block
 - ramp_block
 - burst_block
 
+## Atomic Nodes
 
-## Language Layers
+### Variables
 
-### ISG CNC Base Language
+- parameter
+- variable
 
-- program structure
-- subprograms
-- assignments
-- arithmetic and boolean expressions
-- control flow
-- directives
-- G and M functions
-- axis and parameter addresses
+### Motion
 
-### Select 4 Extensions
+- gcode
+- coordinate
+- feedrate
 
-- laser and gas macros
-- laser parameter blocks
-- shape blocks
-- ramp blocks
-- burst blocks
-- machine-specific macros
+### Literals
 
+- number
+- string_literal
 
-Implemented Flow Control
+## Current Status
 
-- for_statement
-- if_statement
-- else_statement
-- endif_statement
+Implemented:
 
-Planned
+- 25 tests passing
+- control-flow primitives
+- process blocks
+- statement-oriented AST
 
-- while_statement
-- endwhile_statement
-- do_statement
-- enddo_statement
+Next major milestone:
+
+- expression support

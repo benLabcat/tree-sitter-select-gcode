@@ -1,38 +1,82 @@
 # Current AST
 
-## Implemented
+## Implemented Top-Level Nodes
 
-comment_block
+### Documentation
 
-laser_parameter_block
-shape_block
-ramp_block
-burst_block
+- comment_block
 
-directive_statement
-assignment_statement
-macro_statement
-mcode_statement
+### Process Blocks
 
-for_statement
+- laser_parameter_block
+- shape_block
+- ramp_block
+- burst_block
 
-main_program
+### Statements
 
-subroutine_definition
-subroutine_call
+- directive_statement
+- assignment_statement
+- macro_statement
+- mcode_statement
+
+### Flow Control
+
+- for_statement
+
+- if_statement
+- else_statement
+- endif_statement
+
+- while_statement
+- endwhile_statement
+
+### Program Structure
+
+- main_program
+
+- subroutine_definition
+- subroutine_call
 
 ## Atomic Nodes
 
-gcode
+### Variables
 
-coordinate
+- parameter
+- variable
 
-feedrate
+### CNC
 
-parameter
+- gcode
+- coordinate
+- feedrate
 
-variable
+### Literals
 
-number
+- number
+- string_literal
 
-string_literal
+### Directives
+
+- message_directive
+
+### Machine Functions
+
+- mcode
+
+### Macros
+
+- laser_macro
+
+## Statistics
+
+Current regression tests:
+
+25/25 PASS
+
+Current grammar status:
+
+- Stable
+- No unresolved conflicts
+- Statement-oriented AST
+- Process block support implemented

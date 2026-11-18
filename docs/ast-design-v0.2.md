@@ -2,9 +2,9 @@
 
 ## Goal
 
-Move from token recognition to Select language structure recognition.
+Move from token recognition to Select/ISG language structure recognition.
 
-Current v0.1:
+Current v0.1 style:
 
 ```text
 (source_file
@@ -14,18 +14,78 @@ Current v0.1:
   (feedrate))
 ```
 
-Target:
+Target architecture:
 
 ```text
 (source_file
-  (motion_statement
-    (gcode)
-    (coordinate)
-    (coordinate)
-    (feedrate)))
+  (statement)
+  (statement)
+  (statement))
 ```
 
-The parser should represent the semantic structure of Select programs rather than individual tokens.
+The grammar should describe real ISG CNC and Select language constructs rather than isolated tokens.
+
+---
+
+# Language Layers
+
+The grammar consists of two conceptual layers.
+
+## ISG CNC Base Language
+
+Provides:
+
+- program structure
+- subroutines
+- directives
+- assignments
+- expressions
+- control flow
+- CNC functions
+- machine variables
+
+Examples:
+
+```select
+$IF V.E.VALUE == 0
+
+$WHILE P1 == 0
+
+#MSG PLC ["Text"]
+
+P1 = P2 + 10
+
+M30
+```
+
+---
+
+## Select Extensions
+
+Provides:
+
+- laser control macros
+- gas control macros
+- laser parameter blocks
+- shape blocks
+- ramp blocks
+- burst blocks
+
+Examples:
+
+```select
+"LASERON"
+
+"GASON"500
+
+"LASERPARA_BEGIN"
+
+"SHAPE_BEGIN"
+
+"RAMP_BEGIN"
+
+"BURST_BEGIN"
+```
 
 ---
 
@@ -39,11 +99,11 @@ source_file
  └─ statement
 ```
 
-A Select program is fundamentally a sequence of statements.
+A Select program is represented as a sequence of statements and blocks.
 
 ---
 
-# Statement Types
+# Implemented Statement Types
 
 ## Main Program
 
@@ -57,6 +117,12 @@ AST:
 
 ```text
 (main_program)
+```
+
+Status:
+
+```text
+Implemented
 ```
 
 ---
@@ -76,6 +142,12 @@ AST:
   name: (identifier))
 ```
 
+Status:
+
+```text
+Implemented
+```
+
 ---
 
 ## Subroutine Call
@@ -93,47 +165,75 @@ AST:
   name: (identifier))
 ```
 
+Status:
+
+```text
+Implemented
+```
+
 ---
 
-## Motion Statement
+## Directive Statement
 
 Example:
 
 ```select
-G01 X100 Y50 F4200
+#MSG TEST
 ```
 
 AST:
 
 ```text
-(motion_statement
-  (gcode)
-  (coordinate)
-  (coordinate)
-  (feedrate))
+(directive_statement
+  (message_directive))
+```
+
+Status:
+
+```text
+Implemented
 ```
 
 ---
 
-## Arc Motion Statement
+## Assignment Statement
 
 Example:
 
 ```select
-G17 G02 X0 Y0 I4 J0 F4200
+P1 = V.A.ACT_POS.X
 ```
 
 AST:
 
 ```text
-(motion_statement
-  (gcode)
-  (gcode)
-  (coordinate)
-  (coordinate)
-  (coordinate)
-  (coordinate)
-  (feedrate))
+(assignment_statement
+  (assignment
+    (parameter)
+    (variable)))
+```
+
+---
+
+Example:
+
+```select
+V.E.FOCUS = 0.45
+```
+
+AST:
+
+```text
+(assignment_statement
+  (assignment
+    (variable)
+    (number)))
+```
+
+Status:
+
+```text
+Implemented
 ```
 
 ---
@@ -170,75 +270,15 @@ AST:
     (number)))
 ```
 
----
-
-## Assignment
-
-Example:
-
-```select
-P1 = V.A.ACT_POS.X
-```
-
-AST:
+Status:
 
 ```text
-(assignment
-  (parameter)
-  (variable))
+Implemented
 ```
 
 ---
 
-Example:
-
-```select
-V.E.FOCUS = 0.45
-```
-
-AST:
-
-```text
-(assignment
-  (variable)
-  (number))
-```
-
----
-
-## Directive
-
-Example:
-
-```select
-#MSG SYN PLC ["Set start position"]
-```
-
-AST:
-
-```text
-(message_directive)
-```
-
----
-
-## Comment
-
-Example:
-
-```select
-;Rapid traverse
-```
-
-AST:
-
-```text
-(line_comment)
-```
-
----
-
-## Program End
+## M-Code Statement
 
 Example:
 
@@ -249,14 +289,19 @@ M30
 AST:
 
 ```text
-(mcode))
+(mcode_statement
+  (mcode))
+```
+
+Status:
+
+```text
+Implemented
 ```
 
 ---
 
-# Future Statement Types
-
-Not yet implemented.
+# Implemented Control Flow
 
 ## FOR Statement
 
@@ -266,256 +311,645 @@ Example:
 $FOR P1=1,3,1
 ```
 
-Candidate AST:
-
-```text
-(for_statement
-  variable: (parameter)
-  start: (number)
-  end: (number)
-  step: (number))
-```
-
----
-
-## END FOR
-
-Example:
-
-```select
-$ENDFOR
-```
-
 AST:
 
 ```text
-(endfor_statement)
+(for_statement)
+```
+
+Status:
+
+```text
+Implemented
 ```
 
 ---
 
 ## IF Statement
 
-Expected syntax:
+Example:
 
 ```select
-$IF
+$IF V.E.CHANINDEX_AAXIS == 0
 ```
 
-Candidate node:
+AST:
 
 ```text
 (if_statement)
+```
+
+Status:
+
+```text
+Implemented
 ```
 
 ---
 
 ## ELSE Statement
 
-Expected syntax:
+Example:
 
 ```select
 $ELSE
 ```
 
-Candidate node:
+AST:
 
 ```text
 (else_statement)
+```
+
+Status:
+
+```text
+Implemented
 ```
 
 ---
 
 ## ENDIF Statement
 
-Expected syntax:
+Example:
 
 ```select
 $ENDIF
 ```
 
-Candidate node:
+AST:
 
 ```text
 (endif_statement)
 ```
 
+Status:
+
+```text
+Implemented
+```
+
 ---
 
-# Process Blocks
+## WHILE Statement
 
-Future design.
+Example:
 
-## LASERPARA Block
+```select
+$WHILE P1 == 0
+```
+
+AST:
+
+```text
+(while_statement)
+```
+
+Status:
+
+```text
+Implemented
+```
+
+---
+
+## ENDWHILE Statement
+
+Example:
+
+```select
+$ENDWHILE
+```
+
+AST:
+
+```text
+(endwhile_statement)
+```
+
+Status:
+
+```text
+Implemented
+```
+
+---
+
+# Implemented Process Blocks
+
+## Laser Parameter Block
+
+Example:
 
 ```select
 "LASERPARA_BEGIN"
-...
+V.E.PWR_VOLTAGE = 0.5
+V.E.FOCUS = 0.45
 "LASERPARA_END"
 ```
 
-Candidate AST:
+AST:
 
 ```text
 (laser_parameter_block
-  ...)
+  (laserpara_begin)
+  (assignment_statement)
+  (assignment_statement)
+  (laserpara_end))
+```
+
+Status:
+
+```text
+Implemented
 ```
 
 ---
 
-## SHAPE Block
+## Shape Block
+
+Example:
 
 ```select
 "SHAPE_BEGIN"
-...
+V.E.SHAPE_T[0] = 0
+V.E.SHAPE_A[0] = 100
 "SHAPE_END"
 ```
 
-Candidate AST:
+AST:
 
 ```text
 (shape_block
-  ...)
+  (shape_begin)
+  (assignment_statement)
+  (assignment_statement)
+  (shape_end))
+```
+
+Status:
+
+```text
+Implemented
 ```
 
 ---
 
-## RAMP Block
+## Ramp Block
+
+Example:
 
 ```select
 "RAMP_BEGIN"
-...
+V.E.STARTRAMP_PULSES = 10
+V.E.STARTRAMP_ENERGY = 20
 "RAMP_END"
 ```
 
-Candidate AST:
+AST:
 
 ```text
 (ramp_block
-  ...)
+  (ramp_begin)
+  (assignment_statement)
+  (assignment_statement)
+  (ramp_end))
+```
+
+Status:
+
+```text
+Implemented
 ```
 
 ---
 
-## BURST Block
+## Burst Block
+
+Example:
 
 ```select
 "BURST_BEGIN"
-...
+V.E.BURSTON = 0
+V.E.BURSTPULSES = 0
 "BURST_END"
 ```
+
+AST:
+
+```text
+(burst_block
+  (burst_begin)
+  (assignment_statement)
+  (assignment_statement)
+  (burst_end))
+```
+
+Status:
+
+```text
+Implemented
+```
+
+---
+
+# Implemented Documentation Blocks
+
+## Comment Block
+
+Example:
+
+```select
+#COMMENT BEGIN
+Example text
+#COMMENT END
+```
+
+AST:
+
+```text
+(comment_block)
+```
+
+Notes:
+
+The content of the comment block is intentionally not parsed.
+
+Status:
+
+```text
+Implemented
+```
+
+---
+
+# Atomic Nodes
+
+## Variables
+
+```text
+parameter
+variable
+```
+
+Examples:
+
+```select
+P1
+
+V.A.ACT_POS.X
+
+V.E.PWR_VOLTAGE
+
+V.E.SHAPE_T[0]
+```
+
+Status:
+
+```text
+Implemented
+```
+
+---
+
+## Literals
+
+```text
+number
+string_literal
+```
+
+Examples:
+
+```select
+0.45
+
+100
+
+"LASERON"
+```
+
+Status:
+
+```text
+Implemented
+```
+
+---
+
+## CNC Motion Atoms
+
+```text
+gcode
+coordinate
+feedrate
+```
+
+Examples:
+
+```select
+G01
+
+X100
+
+Y50
+
+I4
+
+J0
+
+F4200
+```
+
+Status:
+
+```text
+Implemented
+```
+
+Notes:
+
+These currently exist as atomic nodes only.
+
+Future versions should promote them into structured motion statements.
+
+---
+
+# Planned Expression System
+
+The current grammar does not parse expressions.
+
+Future implementation should support:
+
+## Arithmetic Expressions
+
+Examples:
+
+```select
+P1 = P2 + 10
+
+P1 = P2 - P3
+
+P1 = P2 * [P3 + 1]
+
+P1 = P2 / P3
+
+P1 = 2 ** P3
+
+P1 = 11 MOD 3
+```
+
+Candidate node:
+
+```text
+(arithmetic_expression)
+```
+
+---
+
+## Comparison Expressions
+
+Examples:
+
+```select
+P1 == P2
+
+P1 != P2
+
+P1 >= P2
+
+P1 <= P2
+```
+
+Candidate node:
+
+```text
+(comparison_expression)
+```
+
+---
+
+## Boolean Expressions
+
+Examples:
+
+```select
+P1 AND P2
+
+P1 OR P2
+
+NOT[P1]
+```
+
+Candidate node:
+
+```text
+(boolean_expression)
+```
+
+---
+
+# Planned Structured Control Flow
+
+Current implementation recognises the statements.
+
+Future implementation should recognise full blocks.
+
+## IF Block
 
 Candidate AST:
 
 ```text
-(burst_block
-  ...)
+(if_block
+  (condition)
+  (body)
+  (else_block))
 ```
 
 ---
 
-# Design Rules
+## WHILE Block
 
-## Rule 1
-
-Nodes should represent Select concepts.
-
-Good:
+Candidate AST:
 
 ```text
-motion_statement
-macro_statement
-assignment
-```
-
-Bad:
-
-```text
-token_group
-line_1
+(while_block
+  (condition)
+  (body))
 ```
 
 ---
 
-## Rule 2
+## DO Block
 
-A statement should correspond to one logical Select instruction.
+Candidate AST:
 
-Examples:
+```text
+(do_block
+  (condition)
+  (body))
+```
+
+---
+
+# Planned CNC Motion Model
+
+Current implementation:
+
+```text
+(gcode)
+(coordinate)
+(feedrate)
+```
+
+Future implementation:
+
+```text
+(motion_statement
+  (gcode)
+  (coordinate)
+  (coordinate)
+  (feedrate))
+```
+
+---
+
+Example:
 
 ```select
 G01 X100 Y50 F4200
 ```
 
-```select
-"LASERON"
-```
+---
+
+Arc motion:
 
 ```select
-P1 = 5
+G17 G02 X0 Y0 I4 J0 F4200
+```
+
+Candidate AST:
+
+```text
+(arc_motion_statement
+  ...)
 ```
 
 ---
 
-## Rule 3
+# AST Maturity
 
-Highlighting must be derived from AST nodes wherever possible.
+## Phase 1 - Tokens
 
-Preferred:
+Completed
 
 ```text
-motion_statement
- └─ gcode
+gcode
+variable
+parameter
+number
+string_literal
 ```
-
-over regex-only highlighting.
 
 ---
 
-## Rule 4
+## Phase 2 - Statements
 
-Real Select programs are the specification.
-
-Grammar changes must be validated against:
+Completed
 
 ```text
-examples/reference_program.select
-```
-
-before being accepted.
-
-
-Implemented Statement Types
-
-✅ macro_statement
-
-✅ assignment_statement
-
-✅ mcode_statement
-
-
-Next Candidates
-
-motion_statement
-
 directive_statement
 
-subroutine_call_statement
+assignment_statement
 
-subroutine_definition_statement
+macro_statement
 
+mcode_statement
 
-process_block
+for_statement
 
-✅laser_parameter_block
+if_statement
+else_statement
+endif_statement
 
-✅shape_block
+while_statement
+endwhile_statement
+```
 
-✅ramp_block
+---
 
-✅burst_block
+## Phase 3 - Process Blocks
 
-✅process_block
-├─ begin_marker
-├─ body
-└─ end_marker
+Completed
+
+```text
+laser_parameter_block
+
+shape_block
+
+ramp_block
+
+burst_block
+
+comment_block
+```
+
+---
+
+## Phase 4 - Expressions
+
+Planned
+
+```text
+comparison_expression
+
+arithmetic_expression
+
+boolean_expression
+```
+
+---
+
+## Phase 5 - Structured Control Flow
+
+Planned
+
+```text
+if_block
+
+while_block
+
+do_block
+```
+
+---
+
+## Phase 6 - CNC Motion
+
+Planned
+
+```text
+motion_statement
+
+arc_motion_statement
+
+positioning_statement
+```
+
+---
+
+# Current Project Status
+
+```text
+Grammar branch:
+feature/ast-design-v0.2
+
+Regression tests:
+25 / 25 PASS
+
+Architecture:
+Stable
+
+Known parser conflicts:
+None
+```
