@@ -65,6 +65,14 @@
           },
           {
             "type": "SYMBOL",
+            "name": "ramp_block"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "burst_block"
+          },
+          {
+            "type": "SYMBOL",
             "name": "macro_statement"
           },
           {
@@ -330,6 +338,62 @@
     "shape_end": {
       "type": "STRING",
       "value": "\"SHAPE_END\""
+    },
+    "ramp_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "ramp_begin"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "assignment_statement"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ramp_end"
+        }
+      ]
+    },
+    "ramp_begin": {
+      "type": "STRING",
+      "value": "\"RAMP_BEGIN\""
+    },
+    "ramp_end": {
+      "type": "STRING",
+      "value": "\"RAMP_END\""
+    },
+    "burst_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "burst_begin"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "assignment_statement"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "burst_end"
+        }
+      ]
+    },
+    "burst_begin": {
+      "type": "STRING",
+      "value": "\"BURST_BEGIN\""
+    },
+    "burst_end": {
+      "type": "STRING",
+      "value": "\"BURST_END\""
     },
     "line_comment": {
       "type": "TOKEN",

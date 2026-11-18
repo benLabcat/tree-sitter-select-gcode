@@ -38,6 +38,29 @@
     }
   },
   {
+    "type": "burst_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment_statement",
+          "named": true
+        },
+        {
+          "type": "burst_begin",
+          "named": true
+        },
+        {
+          "type": "burst_end",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "directive_statement",
     "named": true,
     "fields": {},
@@ -125,6 +148,29 @@
     }
   },
   {
+    "type": "ramp_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment_statement",
+          "named": true
+        },
+        {
+          "type": "ramp_begin",
+          "named": true
+        },
+        {
+          "type": "ramp_end",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "shape_block",
     "named": true,
     "fields": {},
@@ -158,6 +204,10 @@
       "types": [
         {
           "type": "assignment_statement",
+          "named": true
+        },
+        {
+          "type": "burst_block",
           "named": true
         },
         {
@@ -202,6 +252,10 @@
         },
         {
           "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "ramp_block",
           "named": true
         },
         {
@@ -268,6 +322,14 @@
     "named": false
   },
   {
+    "type": "burst_begin",
+    "named": true
+  },
+  {
+    "type": "burst_end",
+    "named": true
+  },
+  {
     "type": "coordinate",
     "named": true
   },
@@ -317,6 +379,14 @@
   },
   {
     "type": "parameter",
+    "named": true
+  },
+  {
+    "type": "ramp_begin",
+    "named": true
+  },
+  {
+    "type": "ramp_end",
     "named": true
   },
   {

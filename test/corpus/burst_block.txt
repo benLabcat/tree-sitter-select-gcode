@@ -1,0 +1,23 @@
+==================
+Burst Block
+==================
+
+"BURST_BEGIN"
+V.E.BURSTON = 0
+V.E.BURSTPULSES = 0
+"BURST_END"
+
+---
+
+(source_file
+  (burst_block
+    (burst_begin)
+    (assignment_statement
+      (assignment
+        (variable)
+        (number)))
+    (assignment_statement
+      (assignment
+        (variable)
+        (number)))
+    (burst_end)))

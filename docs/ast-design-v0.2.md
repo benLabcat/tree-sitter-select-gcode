@@ -507,15 +507,15 @@ subroutine_definition_statement
 
 process_block
 
-laser_parameter_block
+✅laser_parameter_block
 
-shape_block
+✅shape_block
 
-ramp_block
+✅ramp_block
 
-burst_block
+✅burst_block
 
-process_block
+✅process_block
 ├─ begin_marker
 ├─ body
 └─ end_marker

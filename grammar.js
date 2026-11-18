@@ -23,6 +23,8 @@ module.exports = grammar({
           $.parameter,
           $.variable,
           $.shape_block,
+          $.ramp_block,
+          $.burst_block,
           $.macro_statement,
           $.line_comment
         )
@@ -151,6 +153,33 @@ module.exports = grammar({
 
     shape_end: ($) =>
       '"SHAPE_END"',
+
+    ramp_block: ($) =>
+      seq(
+        $.ramp_begin,
+        repeat1($.assignment_statement),
+        $.ramp_end
+      ),
+
+    ramp_begin: ($) =>
+      '"RAMP_BEGIN"',
+
+    ramp_end: ($) =>
+      '"RAMP_END"',
+
+    burst_block: ($) =>
+      seq(
+        $.burst_begin,
+        repeat1($.assignment_statement),
+        $.burst_end
+      ),
+
+    burst_begin: ($) =>
+      '"BURST_BEGIN"',
+
+    burst_end: ($) =>
+      '"BURST_END"',
+
 
     line_comment: ($) =>
       token(

@@ -15,3 +15,10 @@ Candidate Future Statements
 - motion_statement
 - process_block_statement
 - comment_statement
+
+Implemented Process Blocks
+
+- laser_parameter_block
+- shape_block
+- ramp_block
+- burst_block

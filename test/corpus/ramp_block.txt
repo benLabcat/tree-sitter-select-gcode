@@ -1,0 +1,23 @@
+==================
+Ramp Block
+==================
+
+"RAMP_BEGIN"
+V.E.STARTRAMP_PULSES = 10
+V.E.STARTRAMP_ENERGY = 20
+"RAMP_END"
+
+---
+
+(source_file
+  (ramp_block
+    (ramp_begin)
+    (assignment_statement
+      (assignment
+        (variable)
+        (number)))
+    (assignment_statement
+      (assignment
+        (variable)
+        (number)))
+    (ramp_end)))
