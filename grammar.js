@@ -68,8 +68,9 @@ module.exports = grammar({
       ),
 
     if_statement: ($) =>
-      token(
-        /\$IF.*/
+      seq(
+        "$IF",
+        $.comparison_expression
       ),
 
     endif_statement: ($) =>
@@ -217,6 +218,17 @@ module.exports = grammar({
 
     burst_end: ($) =>
       '"BURST_END"',
+
+
+    comparison_expression: ($) =>
+      seq(
+        $.variable,
+        $.comparison_operator,
+        $.number
+      ),
+
+    comparison_operator: ($) =>
+      "==",
 
     comment_block: ($) =>
       token(

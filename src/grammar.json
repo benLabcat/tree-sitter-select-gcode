@@ -152,11 +152,17 @@
       }
     },
     "if_statement": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "\\$IF.*"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$IF"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comparison_expression"
+        }
+      ]
     },
     "endif_statement": {
       "type": "STRING",
@@ -444,6 +450,27 @@
     "burst_end": {
       "type": "STRING",
       "value": "\"BURST_END\""
+    },
+    "comparison_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "variable"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comparison_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        }
+      ]
+    },
+    "comparison_operator": {
+      "type": "STRING",
+      "value": "=="
     },
     "comment_block": {
       "type": "TOKEN",

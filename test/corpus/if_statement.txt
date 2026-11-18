@@ -7,8 +7,11 @@ $IF V.E.CHANINDEX_AAXIS == 0
 ---
 
 (source_file
-  (if_statement))
-
+  (if_statement
+    (comparison_expression
+      (variable)
+      (comparison_operator)
+      (number))))
 
 ==================
 ENDIF

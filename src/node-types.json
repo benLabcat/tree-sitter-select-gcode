@@ -61,6 +61,29 @@
     }
   },
   {
+    "type": "comparison_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comparison_operator",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "directive_statement",
     "named": true,
     "fields": {},
@@ -70,6 +93,21 @@
       "types": [
         {
           "type": "message_directive",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "comparison_expression",
           "named": true
         }
       ]
@@ -334,6 +372,10 @@
     }
   },
   {
+    "type": "$IF",
+    "named": false
+  },
+  {
     "type": "%L",
     "named": false
   },
@@ -355,6 +397,10 @@
   },
   {
     "type": "comment_block",
+    "named": true
+  },
+  {
+    "type": "comparison_operator",
     "named": true
   },
   {
@@ -387,10 +433,6 @@
   },
   {
     "type": "identifier",
-    "named": true
-  },
-  {
-    "type": "if_statement",
     "named": true
   },
   {
