@@ -18,8 +18,42 @@
 
 (feedrate) @number
 
-(laser_macro) @string.special
+(comparison_operator) @operator
 
-(line_comment) @comment
+(label_definition) @label
+
+(label_reference) @label
+
+(message_directive) @attribute
+
+(call_directive) @attribute
+
+(flush_directive) @attribute
 
 (for_statement) @keyword.control
+
+(if_statement) @keyword.control
+
+(else_statement) @keyword.control
+
+(endif_statement) @keyword.control
+
+(while_statement) @keyword.control
+
+(endwhile_statement) @keyword.control
+
+(goto_statement) @keyword.control
+
+(laser_parameter_block) @type
+
+(shape_block) @type
+
+(ramp_block) @type
+
+(burst_block) @type
+
+(laser_macro) @string.special
+
+(comment_block) @comment
+
+(line_comment) @comment
