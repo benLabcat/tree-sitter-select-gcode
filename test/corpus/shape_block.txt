@@ -1,0 +1,23 @@
+==================
+Shape Block
+==================
+
+"SHAPE_BEGIN"
+V.E.SHAPE_T[0] = 0
+V.E.SHAPE_A[0] = 100
+"SHAPE_END"
+
+---
+
+(source_file
+  (shape_block
+    (shape_begin)
+    (assignment_statement
+      (assignment
+        (variable)
+        (number)))
+    (assignment_statement
+      (assignment
+        (variable)
+        (number)))
+    (shape_end)))

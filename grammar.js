@@ -22,6 +22,7 @@ module.exports = grammar({
           $.feedrate,
           $.parameter,
           $.variable,
+          $.shape_block,
           $.macro_statement,
           $.line_comment
         )
@@ -137,6 +138,19 @@ module.exports = grammar({
 
     laserpara_end: ($) =>
       '"LASERPARA_END"',
+
+    shape_block: ($) =>
+      seq(
+        $.shape_begin,
+        repeat1($.assignment_statement),
+        $.shape_end
+      ),
+
+    shape_begin: ($) =>
+      '"SHAPE_BEGIN"',
+
+    shape_end: ($) =>
+      '"SHAPE_END"',
 
     line_comment: ($) =>
       token(

@@ -503,3 +503,19 @@ directive_statement
 subroutine_call_statement
 
 subroutine_definition_statement
+
+
+process_block
+
+laser_parameter_block
+
+shape_block
+
+ramp_block
+
+burst_block
+
+process_block
+├─ begin_marker
+├─ body
+└─ end_marker

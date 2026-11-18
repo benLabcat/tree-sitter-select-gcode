@@ -61,6 +61,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "shape_block"
+          },
+          {
+            "type": "SYMBOL",
             "name": "macro_statement"
           },
           {
@@ -298,6 +302,34 @@
     "laserpara_end": {
       "type": "STRING",
       "value": "\"LASERPARA_END\""
+    },
+    "shape_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "shape_begin"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "assignment_statement"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "shape_end"
+        }
+      ]
+    },
+    "shape_begin": {
+      "type": "STRING",
+      "value": "\"SHAPE_BEGIN\""
+    },
+    "shape_end": {
+      "type": "STRING",
+      "value": "\"SHAPE_END\""
     },
     "line_comment": {
       "type": "TOKEN",

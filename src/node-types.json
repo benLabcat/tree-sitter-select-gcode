@@ -125,6 +125,29 @@
     }
   },
   {
+    "type": "shape_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment_statement",
+          "named": true
+        },
+        {
+          "type": "shape_begin",
+          "named": true
+        },
+        {
+          "type": "shape_end",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -179,6 +202,10 @@
         },
         {
           "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "shape_block",
           "named": true
         },
         {
@@ -290,6 +317,14 @@
   },
   {
     "type": "parameter",
+    "named": true
+  },
+  {
+    "type": "shape_begin",
+    "named": true
+  },
+  {
+    "type": "shape_end",
     "named": true
   },
   {
