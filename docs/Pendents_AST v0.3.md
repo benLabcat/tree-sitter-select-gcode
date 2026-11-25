@@ -441,10 +441,10 @@ block_end_marker
 
 ## Phase 1
 
-- [ ] Structured FOR Statements
+- [X] Structured FOR Statements
 - [X] Structured Coordinates
 - [X] Structured Feedrates
-- [ ] Structured Subroutine Keywords
+- [X] Structured Subroutine Keywords
 
 ---
 
