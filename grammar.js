@@ -22,6 +22,7 @@ module.exports = grammar({
           $.assignment_statement,
           $.mcode_statement,
           $.for_statement,
+          $.endfor_statement,
           $.if_statement,
           $.else_statement,
           $.endif_statement,
@@ -53,22 +54,50 @@ module.exports = grammar({
     main_program: ($) =>
       "%MAIN",
 
+    definition_keyword: ($) =>
+      "%L",
+
     subroutine_definition: ($) =>
       seq(
-        "%L",
+        $.definition_keyword,
         field("name", $.identifier)
       ),
+
+    call_keyword: ($) =>
+      "LL",
 
     subroutine_call: ($) =>
       seq(
-        "LL",
+        $.call_keyword,
         field("name", $.identifier)
       ),
 
-    for_statement: ($) =>
-      token(
-        /\$(FOR|ENDFOR).*/
+    for_keyword: ($) =>
+      "$FOR",
+
+    endfor_keyword: ($) =>
+      "$ENDFOR",
+
+    for_value: ($) =>
+      choice(
+        $.parameter,
+        $.number
       ),
+
+    for_statement: ($) =>
+      seq(
+        $.for_keyword,
+        $.parameter,
+        "=",
+        $.for_value,
+        ",",
+        $.for_value,
+        ",",
+        $.for_value
+      ),
+
+    endfor_statement: ($) =>
+      $.endfor_keyword,
 
     if_statement: ($) =>
       seq(
@@ -120,14 +149,32 @@ module.exports = grammar({
         /V(\.[A-Z0-9_]+)+(\[\d+\])?/
       ),
 
-    coordinate: ($) =>
-      token(
-        /[XYZIJKABC][-+]?\d*\.?\d+/
+    axis: ($) =>
+      choice(
+        "X",
+        "Y",
+        "Z",
+        "I",
+        "J",
+        "K",
+        "A",
+        "B",
+        "C"
       ),
 
+    coordinate: ($) =>
+      seq(
+        $.axis,
+        $.number
+      ),
+
+    feedrate_keyword: ($) =>
+      "F",
+
     feedrate: ($) =>
-      token(
-        /F\d+(\.\d+)?/
+      seq(
+        $.feedrate_keyword,
+        $.number
       ),
 
     macro_statement: ($) =>

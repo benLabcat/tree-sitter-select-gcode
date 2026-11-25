@@ -8,6 +8,12 @@ G01 X10 Y20 F4200
 
 (source_file
   (gcode)
-  (coordinate)
-  (coordinate)
-  (feedrate))
+  (coordinate
+    (axis)
+    (number))
+  (coordinate
+    (axis)
+    (number))
+  (feedrate
+    (feedrate_keyword)
+    (number)))

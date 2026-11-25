@@ -45,6 +45,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "endfor_statement"
+          },
+          {
+            "type": "SYMBOL",
             "name": "if_statement"
           },
           {
@@ -118,12 +122,16 @@
       "type": "STRING",
       "value": "%MAIN"
     },
+    "definition_keyword": {
+      "type": "STRING",
+      "value": "%L"
+    },
     "subroutine_definition": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "%L"
+          "type": "SYMBOL",
+          "name": "definition_keyword"
         },
         {
           "type": "FIELD",
@@ -134,13 +142,17 @@
           }
         }
       ]
+    },
+    "call_keyword": {
+      "type": "STRING",
+      "value": "LL"
     },
     "subroutine_call": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "LL"
+          "type": "SYMBOL",
+          "name": "call_keyword"
         },
         {
           "type": "FIELD",
@@ -152,12 +164,67 @@
         }
       ]
     },
+    "for_keyword": {
+      "type": "STRING",
+      "value": "$FOR"
+    },
+    "endfor_keyword": {
+      "type": "STRING",
+      "value": "$ENDFOR"
+    },
+    "for_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "parameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        }
+      ]
+    },
     "for_statement": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "\\$(FOR|ENDFOR).*"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "for_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parameter"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for_value"
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for_value"
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for_value"
+        }
+      ]
+    },
+    "endfor_statement": {
+      "type": "SYMBOL",
+      "name": "endfor_keyword"
     },
     "if_statement": {
       "type": "SEQ",
@@ -258,19 +325,76 @@
         "value": "V(\\.[A-Z0-9_]+)+(\\[\\d+\\])?"
       }
     },
+    "axis": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "X"
+        },
+        {
+          "type": "STRING",
+          "value": "Y"
+        },
+        {
+          "type": "STRING",
+          "value": "Z"
+        },
+        {
+          "type": "STRING",
+          "value": "I"
+        },
+        {
+          "type": "STRING",
+          "value": "J"
+        },
+        {
+          "type": "STRING",
+          "value": "K"
+        },
+        {
+          "type": "STRING",
+          "value": "A"
+        },
+        {
+          "type": "STRING",
+          "value": "B"
+        },
+        {
+          "type": "STRING",
+          "value": "C"
+        }
+      ]
+    },
     "coordinate": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "[XYZIJKABC][-+]?\\d*\\.?\\d+"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "axis"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        }
+      ]
+    },
+    "feedrate_keyword": {
+      "type": "STRING",
+      "value": "F"
     },
     "feedrate": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "F\\d+(\\.\\d+)?"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "feedrate_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        }
+      ]
     },
     "macro_statement": {
       "type": "SYMBOL",

@@ -8,6 +8,7 @@ Subroutine
 
 (source_file
   (subroutine_definition
+    (definition_keyword)
     name: (identifier)))
 
 
@@ -21,4 +22,5 @@ LL KREISE
 
 (source_file
   (subroutine_call
+    (call_keyword)
     name: (identifier)))

@@ -1,0 +1,13 @@
+$IF V.E.VALUE == 0
+
+#CALL AX[A,5,0]
+
+$GOTO [END]
+
+[END]
+
+#MSG TEST ;Comment
+
+G01 X100 Y50 Z-2.5 F4200
+
+$FOR P1=10,P8,P7

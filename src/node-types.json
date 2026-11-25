@@ -38,6 +38,11 @@
     }
   },
   {
+    "type": "axis",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "burst_block",
     "named": true,
     "fields": {},
@@ -89,6 +94,25 @@
     "fields": {}
   },
   {
+    "type": "coordinate",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "axis",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "directive_statement",
     "named": true,
     "fields": {},
@@ -106,6 +130,82 @@
         },
         {
           "type": "message_directive",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "endfor_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "endfor_keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "feedrate",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "feedrate_keyword",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "for_keyword",
+          "named": true
+        },
+        {
+          "type": "for_value",
+          "named": true
+        },
+        {
+          "type": "parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "parameter",
           "named": true
         }
       ]
@@ -323,6 +423,10 @@
           "named": true
         },
         {
+          "type": "endfor_statement",
+          "named": true
+        },
+        {
           "type": "endif_statement",
           "named": true
         },
@@ -419,6 +523,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "call_keyword",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -435,6 +549,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "definition_keyword",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -450,7 +574,7 @@
     "named": false
   },
   {
-    "type": "%L",
+    "type": ",",
     "named": false
   },
   {
@@ -478,7 +602,39 @@
     "named": false
   },
   {
-    "type": "LL",
+    "type": "A",
+    "named": false
+  },
+  {
+    "type": "B",
+    "named": false
+  },
+  {
+    "type": "C",
+    "named": false
+  },
+  {
+    "type": "I",
+    "named": false
+  },
+  {
+    "type": "J",
+    "named": false
+  },
+  {
+    "type": "K",
+    "named": false
+  },
+  {
+    "type": "X",
+    "named": false
+  },
+  {
+    "type": "Y",
+    "named": false
+  },
+  {
+    "type": "Z",
     "named": false
   },
   {
@@ -502,15 +658,23 @@
     "named": true
   },
   {
+    "type": "call_keyword",
+    "named": true
+  },
+  {
     "type": "comment_block",
     "named": true
   },
   {
-    "type": "coordinate",
+    "type": "definition_keyword",
     "named": true
   },
   {
     "type": "else_statement",
+    "named": true
+  },
+  {
+    "type": "endfor_keyword",
     "named": true
   },
   {
@@ -522,7 +686,7 @@
     "named": true
   },
   {
-    "type": "feedrate",
+    "type": "feedrate_keyword",
     "named": true
   },
   {
@@ -530,7 +694,7 @@
     "named": true
   },
   {
-    "type": "for_statement",
+    "type": "for_keyword",
     "named": true
   },
   {

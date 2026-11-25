@@ -8,5 +8,14 @@ $ENDFOR
 ---
 
 (source_file
-  (for_statement)
-  (for_statement))
+  (for_statement
+    (for_keyword)
+    (parameter)
+    (for_value
+      (number))
+    (for_value
+      (number))
+    (for_value
+      (number)))
+  (endfor_statement
+    (endfor_keyword)))
